@@ -1,375 +1,1174 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.7.2/font/bootstrap-icons.min.css"
+  <title>Bisyri Sy | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="logos.JPG">
-  <title>Bisyri Sy | Web Portofolio</title>
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #0e0e0e;
+      --surface: #161616;
+      --surface2: #1e1e1e;
+      --border: rgba(255, 255, 255, 0.07);
+      --text: #f0ece3;
+      --muted: rgba(240, 236, 227, 0.4);
+      --accent: #c8b89a;
+      --accent2: #7a9e8e;
+      --glow: rgba(200, 184, 154, 0.12);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--accent);
+      border-radius: 4px;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 20px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(20px);
+      background: rgba(14, 14, 14, 0.7);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 20px;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-resume {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      color: var(--accent);
+      text-decoration: none;
+      border: 1px solid var(--accent);
+      padding: 8px 18px;
+      border-radius: 2px;
+      letter-spacing: 0.08em;
+      transition: all 0.25s;
+    }
+
+    .nav-resume:hover {
+      background: var(--accent);
+      color: var(--bg);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 120px 48px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(200, 184, 154, 0.06) 0%, transparent 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      max-width: 720px;
+      width: 100%;
+    }
+
+    .hero-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      color: var(--accent2);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 0.1s;
+    }
+
+    .hero-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(52px, 7vw, 92px);
+      line-height: 1.0;
+      color: var(--text);
+      margin-bottom: 16px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 0.25s;
+    }
+
+    .hero-name em {
+      color: var(--accent);
+      font-style: italic;
+    }
+
+    .hero-sub {
+      font-family: 'DM Mono', monospace;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 480px;
+      margin-bottom: 40px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 0.4s;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 0.55s;
+    }
+
+    .btn-primary-custom {
+      background: var(--accent);
+      color: var(--bg);
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      padding: 12px 28px;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: all 0.25s;
+    }
+
+    .btn-primary-custom:hover {
+      opacity: 0.85;
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      padding: 12px 28px;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      transition: all 0.25s;
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .hero-socials {
+      display: flex;
+      gap: 20px;
+      margin-top: 48px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 0.65s;
+    }
+
+    .hero-socials a {
+      color: var(--muted);
+      text-decoration: none;
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      transition: color 0.2s;
+    }
+
+    .hero-socials a:hover {
+      color: var(--accent);
+    }
+
+    /* ── SECTION WRAPPER ── */
+    section {
+      padding: 100px 48px;
+    }
+
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--accent);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 48px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      max-width: 80px;
+      height: 1px;
+      background: var(--accent);
+      opacity: 0.4;
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .about-photo {
+      aspect-ratio: 4/5;
+      background: var(--surface);
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid var(--border);
+    }
+
+    .about-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .photo-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .photo-upload-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.25s;
+      cursor: pointer;
+    }
+
+    .about-photo:hover .photo-upload-overlay {
+      opacity: 1;
+    }
+
+    .photo-upload-overlay span {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      border: 1px solid var(--accent);
+      padding: 8px 16px;
+      border-radius: 2px;
+    }
+
+    .about-text h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 48px;
+      line-height: 1.1;
+      margin-bottom: 24px;
+    }
+
+    .about-text h2 em {
+      color: var(--accent);
+      font-style: italic;
+    }
+
+    .about-text p {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    /* ── TECH STACK ── */
+    .tech-section {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .tech-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      max-width: 900px;
+    }
+
+    .tech-pill {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 8px 20px;
+      border-radius: 100px;
+      letter-spacing: 0.06em;
+      transition: all 0.2s;
+      cursor: default;
+    }
+
+    .tech-pill:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    /* ── PROJECTS ── */
+    .projects-header {
+      max-width: 1100px;
+      margin: 0 auto 64px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .projects-header h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 48px;
+    }
+
+    .projects-header h2 em {
+      color: var(--accent);
+      font-style: italic;
+    }
+
+    .show-more-link {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: 0.1em;
+      border-bottom: 1px solid var(--accent);
+      padding-bottom: 2px;
+      transition: opacity 0.2s;
+    }
+
+    .show-more-link:hover {
+      opacity: 0.7;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* ── PROJECT CARD with carousel ── */
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      position: relative;
+      transition: border-color 0.25s;
+      cursor: pointer;
+    }
+
+    .project-card:hover {
+      border-color: rgba(200, 184, 154, 0.3);
+    }
+
+    /* Image carousel inside card */
+    .card-media {
+      position: relative;
+      aspect-ratio: 4/3;
+      background: var(--surface2);
+      overflow: hidden;
+    }
+
+    .card-slides {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .card-slide {
+      min-width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .card-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .slide-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--border);
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .slide-placeholder svg {
+      opacity: 0.3;
+    }
+
+    /* Carousel controls */
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(14, 14, 14, 0.8);
+      border: none;
+      color: var(--text);
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 0.2s;
+      z-index: 10;
+      font-size: 12px;
+    }
+
+    .card-media:hover .carousel-btn {
+      opacity: 1;
+    }
+
+    .carousel-btn.prev {
+      left: 8px;
+    }
+
+    .carousel-btn.next {
+      right: 8px;
+    }
+
+    .carousel-btn:disabled {
+      opacity: 0.2 !important;
+    }
+
+    /* Upload button inside card */
+    .add-photo-btn {
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      background: rgba(14, 14, 14, 0.85);
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      padding: 5px 10px;
+      border-radius: 2px;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 0.2s;
+      z-index: 10;
+    }
+
+    .card-media:hover .add-photo-btn {
+      opacity: 1;
+    }
+
+    /* Dots */
+    .carousel-dots {
+      position: absolute;
+      bottom: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 4px;
+      z-index: 10;
+    }
+
+    .dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      transition: background 0.2s;
+    }
+
+    .dot.active {
+      background: var(--accent);
+    }
+
+    .card-body {
+      padding: 20px 22px 24px;
+    }
+
+    .card-stack {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .card-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      color: var(--accent2);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .card-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 18px;
+      color: var(--text);
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .card-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+
+    .card-link {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: gap 0.2s;
+    }
+
+    .card-link:hover {
+      gap: 10px;
+    }
+
+    /* ── CONTACT ── */
+    .contact-inner {
+      max-width: 640px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .contact-inner h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 56px;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .contact-inner h2 em {
+      color: var(--accent);
+      font-style: italic;
+    }
+
+    .contact-inner p {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.8;
+      margin-bottom: 36px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer span {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* ── LIGHTBOX ── */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: rgba(0, 0, 0, 0.95);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+
+    .lightbox.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .lightbox-img {
+      max-width: 90vw;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 2px;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: 24px;
+      cursor: pointer;
+      font-family: 'DM Mono', monospace;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav {
+        padding: 16px 24px;
+      }
+
+      section {
+        padding: 80px 24px;
+      }
+
+      .hero {
+        padding: 100px 24px 60px;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .projects-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
 </head>
 
 <body>
-  <header class="navbar navbar-light pt-4">
-    <div class="container" style="font-family: SF Mono;">
-      <a href="index.html" class="text-white" style="font-size: 16px; text-decoration: none;">Bisyri Sy.</a>
-      <a href="CVBisyriSyamsuri_ATS.pdf" style="text-decoration: none;" class="btn btn-outline-light"><i
-          class="bi bi-person"></i> Resume</a>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">Bisyri Sy.</a>
+    <a href="CVBisyriSyamsuri_ATS.pdf" class="nav-resume">↓ Resume</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <p class="hero-eyebrow">— Hello, world</p>
+      <h1 class="hero-name">Bisyri<br><em>Syamsuri</em></h1>
+      <p class="hero-sub">
+        Programmer · Backend Developer<br>
+        Informatika, UIN Malang · 2023<br>
+        Seorang yang sangat menikmati pekerjaannya :)
+      </p>
+      <div class="hero-actions">
+        <a href="Portofolio.pdf" class="btn-primary-custom">Portofolio PDF</a>
+        <a href="https://github.com/bisyrisyamsuri" class="btn-ghost" target="_blank">GitHub →</a>
+      </div>
+      <div class="hero-socials">
+        <a href="https://wa.me/6282143761561" target="_blank">WA</a>
+        <a href="https://www.instagram.com/bsyri19/" target="_blank">IG</a>
+        <a href="https://www.linkedin.com/in/bisyrisyamsuri/" target="_blank">LI</a>
+      </div>
     </div>
-  </header>
-  <main>
-    <!-- Keknya bukan jumbotrom -->
-    <section class="py-5" style="height: 538px;">
-      <div class="text-center" style="font-family: SF Mono;">
-        <p id="intro" class="text-white pt-5" style="font-size: 18px;"></p>
-        <p id="name" class="text-primary px-5" style="font-family: Poppins; font-size: 64px; font-weight: 800;"></p>
-        <p id="bawah" class="text-white-50 pb-2" style="font-size: 18px;"></p>
-        <div id="keterangan" class="keterangan">
-          <a href="https://github.com/bisyrisyamsuri" style="text-decoration: none;" class="btn btn-warning px-4"><i
-              class="bi bi-github"></i> Repository</a>
-          <a href="Portofolio.pdf" style="text-decoration: none;" class="btn btn-primary px-4"> Portofolio PDF</a>
-          <div class="pt-3">
-            <a href="https://wa.me/6285230481254" class="text-white-50 px-2"><i class="bi bi-whatsapp"
-                style="font-size: 25px;"></i></a>
-            <a href="https://www.instagram.com/bsyri19/?hl=en" class="text-white-50 px-2"><i class="bi bi-instagram"
-                style="font-size: 25px;"></i></a>
-            <a href="https://www.linkedin.com/in/bisyrisyamsuri/" class="text-white-50 px-2"><i class="bi bi-linkedin"
-                style="font-size: 25px;"></i></a>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- abot me -->
-    <section class="py-5">
-      <div class="container pt-5 hidden-content" id="content">
-        <div class="row featurette">
-          <div class="col-md-7 order-md-2 px-5 pt-4" style="font-family: poppins;">
-            <h1 class="text-primary" style="font-size: 48px; font-weight: 800;">About Me</h1>
-            <p class="text-white py-3" style="font-size: 16px;">Hi, Aku Bisyri Syamsuri, aku seorang yang menishabkan
-              diri menjadi seorang Programmer yang berasal dari Madura. Aku lulusan prodi Teknik Informatika, UIN
-              Malang tahun 2023. Aku juga memiliki beberapa pengalaman organisasi dan juga pengalaman magang yang
-              tentunya sangat membantu saya dalam mendalami bidang IT ini.</p>
-            <p class="text-white-50" style="font-size: 16px;">Aku sangat bangga dan sangat bersemangat untuk belajar
-              hal-hal baru tentang programming khususnya backend developer, dan aku juga termasuk orang yang sangat
-              menikmati pekerjaan dan selalu bertanggung jawab terhadap pekerjaan yang saya lakukan
-              :)</p>
-          </div>
-          <div class="col-md-5 order-md-1">
-            <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="400"
-              height="400" src="Cover.png" alt="">
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- karosel tech -->
-    <section class="py-5">
-      <div class="text-center pt-5">
-        <p class="text-primary" style="font-family: poppins; font-size: 64px; font-weight: 800;">Teknologi, <Span
-            class="text-white-50">yang digunakan</Span></p>
-        <p class="text-white pb-2" style="font-family: SF Mono; font-size: 18px; letter-spacing: px;">Beberapa teknologi
-          yang saya pernah
-          gunakan dan saya pelajari akhir akhir ini :v</p>
-      </div>
-      <div class="container">
-        <div class="row justify-content-md-center">
-          <div class="col-md-12">
-            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-              <ol class="carousel-indicators">
-                <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
-                <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
-                <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
-              </ol>
-              <div class="carousel-inner py-5">
-                <div class="carousel-item active">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <div class="single-box">
-                        <div class="img-area text-white-50">
-                          <i class="fa-brands fa-css3-alt" style="font-size: 130px;"></i>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="single-box">
-                        <div class="img-area text-white-50">
-                          <i class="fa-brands fa-html5" style="font-size: 130px;"></i>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="single-box">
-                        <div class="img-area text-white-50">
-                          <i class="fa-brands fa-js" style="font-size: 130px;"></i>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+  </section>
 
-                <div class="carousel-item">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <div class="single-box">
-                        <div class="img-area text-white-50">
-                          <i class="fa-brands fa-github" style="font-size: 130px;"></i>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="single-box">
-                        <div class="img-area text-white-50">
-                          <i class="fa-brands fa-unity" style="font-size: 130px;"></i>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="single-box">
-                        <div class="img-area text-white-50">
-                          <i class="fa-brands fa-figma" style="font-size: 130px;"></i>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-grid">
+      <!-- Photo with upload -->
+      <div class="about-photo" id="aboutPhoto" onclick="document.getElementById('photoInput').click()">
+        <div class="photo-placeholder" id="photoPlaceholder">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+            <rect x="3" y="3" width="18" height="18" rx="2" />
+            <circle cx="8.5" cy="8.5" r="1.5" />
+            <polyline points="21 15 16 10 5 21" />
+          </svg>
+          <span>klik untuk upload foto</span>
+        </div>
+        <img id="aboutImg" src="" alt="Bisyri" style="display:none; width:100%; height:100%; object-fit:cover;">
+        <div class="photo-upload-overlay"><span>Ganti Foto</span></div>
+      </div>
+      <input type="file" id="photoInput" accept="image/*" style="display:none">
 
-                <div class="carousel-item">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <div class="single-box">
-                        <div class="img-area text-white-50">
-                          <i class="fa-brands fa-node" style="font-size: 130px;"></i>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="single-box">
-                        <div class="img-area text-white-50">
-                          <i class="fa-brands fa-laravel" style="font-size: 130px;"></i>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="single-box">
-                        <div class="img-area text-white-50">
-                          <i class="fa-brands fa-php" style="font-size: 130px;"></i>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="about-text reveal">
+        <div class="section-label">About Me</div>
+        <h2>Passionate<br><em>programmer.</em></h2>
+        <p>Hi, Aku Bisyri Syamsuri — programmer asal Madura, lulusan Teknik Informatika UIN Malang 2023. Aku fokus di
+          backend development dan selalu antusias belajar hal-hal baru.</p>
+        <p>Punya pengalaman organisasi dan magang yang solid. Aku tipe yang sangat menikmati pekerjaan dan selalu
+          bertanggung jawab dengan apa yang saya kerjakan.</p>
       </div>
-    </section>
-    <!-- main porto -->
-    <section class="py-5">
-      <div class="container">
-        <div class="text-center pt-5">
-          <p class="text-primary" style="font-family: poppins; font-weight: 800; font-size: 40px;">Beberapa hasil yang
-            <span class="text-white-50">saya buat</span>
-          </p>
-          <p class="text-white" style="font-family: SF Mono; font-size: 16px;">Silahkan dilihat</p>
-        </div>
-        <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 pt-3 g-3">
-          <div class="col d-flex">
-            <div class="shadow-md" style="border-radius: 50px;">
-              <div class="card-body rounded px-4" style="font-family: poppins; background-color: #172a45;">
-                <h1 class="text-white py-3" style="font-weight: 800; font-size: 24px;">Web Infaq Masjid Nurul Iman</h1>
-                <small class="text-success" style="font-family: SF Mono; letter-spacing: -1px;">by <a
-                    href="https://wa.me/6285230481254" style="text-decoration: none;">bisyri syamsuri</a></small></br>
-                <i class="fa-brands fa-html5 text-white pt-2" style="font-size: 20px;"></i>
-                <i class="fa-brands fa-css3-alt text-white pt- ps-3" style="font-size: 20px;"></i>
-                <i class="fa-brands fa-php text-white pt-2 ps-3" style="font-size: 20px;"></i>
-                <i class="fa-brands fa-js text-white pt-2 ps-3" style="font-size: 20px;"></i>
-                <p class="card-text text-white-50 py-2" style="font-size: 14px;">Web yang dibuat menggunakan framework
-                  bootstrap. Web ini bertujuan untuk monitoring infaq masjid nurul iman.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group pb-3">
-                    <a type="button" class="btn btn-outline-light"
-                      style="font-family: SF Mono; font-size: 14px; letter-spacing: -1px;"
-                      href="https://github.com/bisyrisyamsuri/holding"><i class="bi bi-github"></i> Visit Project</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col d-flex">
-            <div class="shadow-md" style="border-radius: 50px;">
-              <div class="card-body rounded px-4" style="font-family: poppins; background-color: #172a45;">
-                <h1 class="text-white py-3" style="font-weight: 800; font-size: 24px;">Web Rekap Keuangan Bisnis</h1>
-                <small class="text-success" style="font-family: SF Mono; letter-spacing: -1px;">by <a
-                    href="https://wa.me/6285230481254" style="text-decoration: none;">bisyri syamsuri</a></small></br>
-                <i class="fa-brands fa-html5 text-white pt-2" style="font-size: 20px;"></i>
-                <i class="fa-brands fa-css3-alt text-white pt- ps-3" style="font-size: 20px;"></i>
-                <i class="fa-brands fa-php text-white pt-2 ps-3" style="font-size: 20px;"></i>
-                <i class="fa-brands fa-js text-white pt-2 ps-3" style="font-size: 20px;"></i>
-                <p class="card-text text-white-50 py-2" style="font-size: 14px;">Web yang dibuat menggunakan framework
-                  bootstrap. Web ini bertujuan untuk merekapan keuangan.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group pb-3">
-                    <a type="button" class="btn btn-outline-light"
-                      style="font-family: SF Mono; font-size: 14px; letter-spacing: -1px;"
-                      href="https://github.com/bisyrisyamsuri/holding"><i class="bi bi-github"></i> Visit Project</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col d-flex">
-            <div class="shadow-md" style="border-radius: 50px;">
-              <div class="card-body rounded px-4" style="font-family: poppins; background-color: #172a45;">
-                <h1 class="text-white py-3" style="font-weight: 800; font-size: 24px;">RESTful API HiSumenep App</h1>
-                <small class="text-success" style="font-family: SF Mono; letter-spacing: -1px;">by <a
-                    href="https://wa.me/6285230481254" style="text-decoration: none;">bisyri syamsuri</a></small></br>
-                <i class="fa-brands fa-python text-white pt-2" style="font-size: 20px;"></i>
-                <p class="card-text text-white-50 py-2" style="font-size: 14px;">RESTful API disini dibuat menggunakan
-                  framework flask. RESTful API yang dibuat digunakan untuk aplikasi hisumenep.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group pb-3">
-                    <a type="button" class="btn btn-outline-light"
-                      style="font-family: SF Mono; font-size: 14px; letter-spacing: -1px;"
-                      href="https://github.com/bisyrisyamsuri/Hisumenependpoint"><i class="bi bi-github"></i> Visit
-                      Project</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col d-flex">
-            <div class="shadow-md" style="border-radius: 50px;">
-              <div class="card-body rounded px-4" style="font-family: poppins; background-color: #172a45;">
-                <h1 class="text-white py-3" style="font-weight: 800; font-size: 24px;">Capstone Project Bangkit Academy
-                </h1>
-                <small class="text-success" style="font-family: SF Mono; letter-spacing: -1px;">by <a
-                    href="https://wa.me/6285230481254" style="text-decoration: none;">bisyri syamsuri</a></small></br>
-                <i class="fa-brands fa-python text-white pt-2" style="font-size: 20px;"></i>
-                <p class="card-text text-white-50 py-2" style="font-size: 14px;">Saya yang bertugas membuat RESTful API.
-                  Nantinya API tersebut akan digunakan aplikasi.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group pb-3">
-                    <a type="button" class="btn btn-outline-light"
-                      style="font-family: SF Mono; font-size: 14px; letter-spacing: -1px;"
-                      href="https://github.com/bisyrisyamsuri/CC_Peca"><i class="bi bi-github"></i> Visit Project</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col d-flex">
-            <div class="shadow-md" style="border-radius: 50px;">
-              <div class="card-body rounded px-4" style="font-family: poppins; background-color: #172a45;">
-                <h1 class="text-white py-3" style="font-weight: 800; font-size: 24px;">HiSumenep App Web Admin</h1>
-                <small class="text-success" style="font-family: SF Mono; letter-spacing: -1px;">by <a
-                    href="https://wa.me/6285230481254" style="text-decoration: none;">bisyri syamsuri</a></small></br>
-                <i class="fa-brands fa-html5 text-white pt-2" style="font-size: 20px;"></i>
-                <i class="fa-brands fa-css3-alt text-white pt- ps-3" style="font-size: 20px;"></i>
-                <i class="fa-brands fa-php text-white pt-2 ps-3" style="font-size: 20px;"></i>
-                <i class="fa-brands fa-js text-white pt-2 ps-3" style="font-size: 20px;"></i>
-                <p class="card-text text-white-50 py-2" style="font-size: 14px;">Web yang dibuat menggunakan framework
-                  bootstrap. Tujuannya untuk mengelola konten pada HiSumenep App.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group pb-3">
-                    <a type="button" class="btn btn-outline-light"
-                      style="font-family: SF Mono; font-size: 14px; letter-spacing: -1px;"
-                      href="https://github.com/bisyrisyamsuri/HiSumenepWebadmin"><i class="bi bi-github"></i> Visit
-                      Project</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col d-flex">
-            <div class="shadow-md" style="border-radius: 50px;">
-              <div class="card-body rounded px-4" style="font-family: poppins; background-color: #172a45;">
-                <h1 class="text-white py-3" style="font-weight: 800; font-size: 24px;">Frontend Bangbeli Website
-                </h1>
-                <small class="text-success" style="font-family: SF Mono; letter-spacing: -1px;">by <a
-                    href="https://wa.me/6285230481254" style="text-decoration: none;">bisyri syamsuri</a></small></br>
-                <i class="fa-brands fa-html5 text-white pt-2" style="font-size: 20px;"></i>
-                <i class="fa-brands fa-css3-alt text-white pt- ps-3" style="font-size: 20px;"></i>
-                <p class="card-text text-white-50 py-2" style="font-size: 14px;">Frontend web dibuat menggunakan
-                  framework bootstrap. Website tersebut merupakan website resmi bangbeli.id.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group pb-3">
-                    <a type="button" class="btn btn-outline-light"
-                      style="font-family: SF Mono; font-size: 14px; letter-spacing: -1px;"
-                      href="https://gitlab.com/bangbeli/bangbeli-landing-page"><i class="bi bi-github"></i> Visit
-                      Project</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="d-flex justify-content-md-center text-center py-5">
-          <div class="btn-group pb-5">
-            <a type="button" class="btn btn-outline-light px-4" style="font-family: SF Mono; font-size: 14px;"
-              href="https://github.com/bisyrisyamsuri"><i class="bi bi-archive"></i> Show More</a>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- get in touch -->
-    <section class="py-5">
-      <div class="container text-center pt-5" style="font-family: poppins;">
-        <h1 class="text-primary" style="font-size: 40px; font-weight: 800;">Get in Touch</h1>
-        <p class="text-white-50 py-3" style="font-size: 18px;">Sekarang saya sedang mencari pengalaman baru. Apapun
-          pertanyaan<br> tentang saya, ataupun kesempatan atau hanya sekedar menyapa <br>Fell free to contact me!!</p>
-        <div class="py-3">
-          <a type="button" class="btn btn-outline-success px-4" style="font-family: SF Mono; font-size: 16px;"
-            href="https://wa.me/6285230481254"><i class="bi bi-whatsapp"></i> Say Hi</a>
-        </div>
-      </div>
-      </div>
-    </section>
-    <section class="py-5">
-      <footer class="footer mt-auto py-3 text-center">
-        <div class="container" style="font-family: SF Mono;">
-          <span class="text-white" style="font-size: 16px; font-weight: 300;">Built by Bisyri Syamsuri</span>
-          <p class="text-white-50 pt-2" style="font-family: poppins; font-size: 14px;">syamsuribisyri@gmail.com</p>
-        </div>
-      </footer>
-    </section>
-  </main>
+    </div>
+  </section>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver"></script>
+  <!-- TECH STACK -->
+  <section class="tech-section">
+    <div style="max-width:1100px; margin:0 auto;">
+      <div class="section-label reveal">Tech Stack</div>
+      <div class="tech-grid reveal">
+        <span class="tech-pill">HTML</span>
+        <span class="tech-pill">CSS</span>
+        <span class="tech-pill">JavaScript</span>
+        <span class="tech-pill">PHP</span>
+        <span class="tech-pill">Python</span>
+        <span class="tech-pill">Laravel</span>
+        <span class="tech-pill">Node.js</span>
+        <span class="tech-pill">Flask</span>
+        <span class="tech-pill">Bootstrap</span>
+        <span class="tech-pill">MySQL</span>
+        <span class="tech-pill">GitHub</span>
+        <span class="tech-pill">Figma</span>
+        <span class="tech-pill">Unity</span>
+        <span class="tech-pill">RESTful API</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="projects-header reveal">
+      <h2>Selected<br><em>Work</em></h2>
+      <a href="https://github.com/bisyrisyamsuri" class="show-more-link" target="_blank">View all on GitHub →</a>
+    </div>
+
+    <div class="projects-grid">
+
+      <!-- Card 1 -->
+      <div class="project-card reveal">
+        <div class="card-media" id="media-0">
+          <div class="card-slides" id="slides-0">
+            <div class="card-slide">
+              <div class="slide-placeholder">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                  <rect x="3" y="3" width="18" height="18" rx="2" />
+                  <circle cx="8.5" cy="8.5" r="1.5" />
+                  <polyline points="21 15 16 10 5 21" />
+                </svg>
+                <span>No image</span>
+              </div>
+            </div>
+          </div>
+          <button class="carousel-btn prev" onclick="slide(0,-1)">‹</button>
+          <button class="carousel-btn next" onclick="slide(0,1)">›</button>
+          <div class="carousel-dots" id="dots-0"></div>
+          <button class="add-photo-btn" onclick="openUpload(0)">+ foto</button>
+          <input type="file" accept="image/*" multiple id="upload-0" style="display:none" onchange="addPhotos(0, this)">
+        </div>
+        <div class="card-body">
+          <div class="card-stack">
+            <span class="card-tag">HTML</span>
+            <span class="card-tag">CSS</span>
+            <span class="card-tag">PHP</span>
+            <span class="card-tag">JS</span>
+          </div>
+          <h3 class="card-title">Web Infaq Masjid Nurul Iman</h3>
+          <p class="card-desc">Web monitoring infaq masjid berbasis Bootstrap. Dibangun untuk transparansi dan kemudahan
+            pengelolaan.</p>
+          <a href="https://github.com/bisyrisyamsuri/holding" class="card-link" target="_blank">Visit Project →</a>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="project-card reveal">
+        <div class="card-media" id="media-1">
+          <div class="card-slides" id="slides-1">
+            <div class="card-slide">
+              <div class="slide-placeholder">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                  <rect x="3" y="3" width="18" height="18" rx="2" />
+                  <circle cx="8.5" cy="8.5" r="1.5" />
+                  <polyline points="21 15 16 10 5 21" />
+                </svg>
+                <span>No image</span>
+              </div>
+            </div>
+          </div>
+          <button class="carousel-btn prev" onclick="slide(1,-1)">‹</button>
+          <button class="carousel-btn next" onclick="slide(1,1)">›</button>
+          <div class="carousel-dots" id="dots-1"></div>
+          <button class="add-photo-btn" onclick="openUpload(1)">+ foto</button>
+          <input type="file" accept="image/*" multiple id="upload-1" style="display:none" onchange="addPhotos(1, this)">
+        </div>
+        <div class="card-body">
+          <div class="card-stack">
+            <span class="card-tag">HTML</span>
+            <span class="card-tag">CSS</span>
+            <span class="card-tag">PHP</span>
+            <span class="card-tag">JS</span>
+          </div>
+          <h3 class="card-title">Web Rekap Keuangan Bisnis</h3>
+          <p class="card-desc">Sistem rekap keuangan terintegrasi berbasis Bootstrap. Memudahkan monitoring arus kas
+            bisnis.</p>
+          <a href="https://github.com/bisyrisyamsuri/holding" class="card-link" target="_blank">Visit Project →</a>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="project-card reveal">
+        <div class="card-media" id="media-2">
+          <div class="card-slides" id="slides-2">
+            <div class="card-slide">
+              <div class="slide-placeholder">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                  <rect x="3" y="3" width="18" height="18" rx="2" />
+                  <circle cx="8.5" cy="8.5" r="1.5" />
+                  <polyline points="21 15 16 10 5 21" />
+                </svg>
+                <span>No image</span>
+              </div>
+            </div>
+          </div>
+          <button class="carousel-btn prev" onclick="slide(2,-1)">‹</button>
+          <button class="carousel-btn next" onclick="slide(2,1)">›</button>
+          <div class="carousel-dots" id="dots-2"></div>
+          <button class="add-photo-btn" onclick="openUpload(2)">+ foto</button>
+          <input type="file" accept="image/*" multiple id="upload-2" style="display:none" onchange="addPhotos(2, this)">
+        </div>
+        <div class="card-body">
+          <div class="card-stack">
+            <span class="card-tag">Python</span>
+            <span class="card-tag">Flask</span>
+          </div>
+          <h3 class="card-title">RESTful API HiSumenep</h3>
+          <p class="card-desc">API backend untuk aplikasi HiSumenep, dibangun dengan Flask. Endpoint yang clean dan
+            terdokumentasi.</p>
+          <a href="https://github.com/bisyrisyamsuri/Hisumenependpoint" class="card-link" target="_blank">Visit Project
+            →</a>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="project-card reveal">
+        <div class="card-media" id="media-3">
+          <div class="card-slides" id="slides-3">
+            <div class="card-slide">
+              <div class="slide-placeholder">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                  <rect x="3" y="3" width="18" height="18" rx="2" />
+                  <circle cx="8.5" cy="8.5" r="1.5" />
+                  <polyline points="21 15 16 10 5 21" />
+                </svg>
+                <span>No image</span>
+              </div>
+            </div>
+          </div>
+          <button class="carousel-btn prev" onclick="slide(3,-1)">‹</button>
+          <button class="carousel-btn next" onclick="slide(3,1)">›</button>
+          <div class="carousel-dots" id="dots-3"></div>
+          <button class="add-photo-btn" onclick="openUpload(3)">+ foto</button>
+          <input type="file" accept="image/*" multiple id="upload-3" style="display:none" onchange="addPhotos(3, this)">
+        </div>
+        <div class="card-body">
+          <div class="card-stack">
+            <span class="card-tag">Python</span>
+            <span class="card-tag">Flask</span>
+          </div>
+          <h3 class="card-title">Capstone Bangkit Academy</h3>
+          <p class="card-desc">RESTful API untuk capstone project Bangkit Academy — backend layer yang menghubungkan
+            model ML ke aplikasi.</p>
+          <a href="https://github.com/bisyrisyamsuri/CC_Peca" class="card-link" target="_blank">Visit Project →</a>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="project-card reveal">
+        <div class="card-media" id="media-4">
+          <div class="card-slides" id="slides-4">
+            <div class="card-slide">
+              <div class="slide-placeholder">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                  <rect x="3" y="3" width="18" height="18" rx="2" />
+                  <circle cx="8.5" cy="8.5" r="1.5" />
+                  <polyline points="21 15 16 10 5 21" />
+                </svg>
+                <span>No image</span>
+              </div>
+            </div>
+          </div>
+          <button class="carousel-btn prev" onclick="slide(4,-1)">‹</button>
+          <button class="carousel-btn next" onclick="slide(4,1)">›</button>
+          <div class="carousel-dots" id="dots-4"></div>
+          <button class="add-photo-btn" onclick="openUpload(4)">+ foto</button>
+          <input type="file" accept="image/*" multiple id="upload-4" style="display:none" onchange="addPhotos(4, this)">
+        </div>
+        <div class="card-body">
+          <div class="card-stack">
+            <span class="card-tag">HTML</span>
+            <span class="card-tag">CSS</span>
+            <span class="card-tag">PHP</span>
+          </div>
+          <h3 class="card-title">HiSumenep Web Admin</h3>
+          <p class="card-desc">Panel admin berbasis Bootstrap untuk mengelola seluruh konten di aplikasi HiSumenep.</p>
+          <a href="https://github.com/bisyrisyamsuri/HiSumenepWebadmin" class="card-link" target="_blank">Visit Project
+            →</a>
+        </div>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="project-card reveal">
+        <div class="card-media" id="media-5">
+          <div class="card-slides" id="slides-5">
+            <div class="card-slide">
+              <div class="slide-placeholder">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                  <rect x="3" y="3" width="18" height="18" rx="2" />
+                  <circle cx="8.5" cy="8.5" r="1.5" />
+                  <polyline points="21 15 16 10 5 21" />
+                </svg>
+                <span>No image</span>
+              </div>
+            </div>
+          </div>
+          <button class="carousel-btn prev" onclick="slide(5,-1)">‹</button>
+          <button class="carousel-btn next" onclick="slide(5,1)">›</button>
+          <div class="carousel-dots" id="dots-5"></div>
+          <button class="add-photo-btn" onclick="openUpload(5)">+ foto</button>
+          <input type="file" accept="image/*" multiple id="upload-5" style="display:none" onchange="addPhotos(5, this)">
+        </div>
+        <div class="card-body">
+          <div class="card-stack">
+            <span class="card-tag">HTML</span>
+            <span class="card-tag">CSS</span>
+          </div>
+          <h3 class="card-title">Frontend Bangbeli Website</h3>
+          <p class="card-desc">Website resmi bangbeli.id — landing page frontend yang dibangun dengan Bootstrap.</p>
+          <a href="https://gitlab.com/bangbeli/bangbeli-landing-page" class="card-link" target="_blank">Visit Project
+            →</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" style="background: var(--surface); border-top: 1px solid var(--border);">
+    <div class="contact-inner reveal">
+      <div class="section-label" style="justify-content:center;">Get In Touch</div>
+      <h2>Let's<br><em>connect.</em></h2>
+      <p>Saat ini saya terbuka untuk kesempatan baru — proyek freelance, kolaborasi, atau sekadar ngobrol soal tech.
+        Jangan ragu untuk reach out!</p>
+      <a href="https://wa.me/6282143761561" class="btn-primary-custom">Say Hi →</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>Built by Bisyri Syamsuri</span>
+    <span>syamsuribisyri@gmail.com</span>
+  </footer>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <img class="lightbox-img" id="lightboxImg" src="" alt="">
+  </div>
+
   <script>
-    var introTyped = new Typed('#intro', {
-      strings: ['Halo, perkenalkan nama saya'],
-      typeSpeed: 25,
-      showCursor: false,
-      onComplete: function (self) {
-        var nameTyped = new Typed('#name', {
-          strings: ['Bisyri Syamsuri, <span class="text-white-50">dan saya </br>seorang Programmer</span>'],
-          typeSpeed: 25,
-          showCursor: false,
-          onComplete: function (self) {
-            var bawahTyped = new Typed('#bawah', {
-              strings: ['Kamu bisa cek hasil ngoding / portofolio aku dibawah ini:)'],
-              typeSpeed: 25,
-              showCursor: false,
-              onComplete: function (self) {
-                var keteranganElement = document.getElementById("keterangan");
-                keteranganElement.style.opacity = "1";
-                keteranganElement.style.animation = "fadeInUp 1s ease-in";
-              }
-            });
-          }
-        });
+    // ── State ──
+    const carousels = {};
+    const CARD_COUNT = 6;
+    for (let i = 0; i < CARD_COUNT; i++) {
+      carousels[i] = { index: 0, images: [] };
+    }
+
+    // ── Carousel logic ──
+    function renderCarousel(id) {
+      const state = carousels[id];
+      const slidesEl = document.getElementById('slides-' + id);
+      const dotsEl = document.getElementById('dots-' + id);
+
+      if (state.images.length === 0) {
+        slidesEl.innerHTML = `<div class="card-slide"><div class="slide-placeholder">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <span>No image</span></div></div>`;
+        dotsEl.innerHTML = '';
+        return;
       }
+
+      slidesEl.innerHTML = state.images.map((src, i) =>
+        `<div class="card-slide" onclick="openLightbox('${src}')">
+          <img src="${src}" alt="project ${i + 1}">
+        </div>`
+      ).join('');
+
+      dotsEl.innerHTML = state.images.map((_, i) =>
+        `<div class="dot ${i === state.index ? 'active' : ''}"></div>`
+      ).join('');
+
+      slidesEl.style.transform = `translateX(-${state.index * 100}%)`;
+    }
+
+    function slide(id, dir) {
+      event.stopPropagation();
+      const state = carousels[id];
+      if (state.images.length === 0) return;
+      state.index = (state.index + dir + state.images.length) % state.images.length;
+      renderCarousel(id);
+    }
+
+    function openUpload(id) {
+      event.stopPropagation();
+      document.getElementById('upload-' + id).click();
+    }
+
+    function addPhotos(id, input) {
+      const files = Array.from(input.files);
+      files.forEach(file => {
+        const reader = new FileReader();
+        reader.onload = e => {
+          carousels[id].images.push(e.target.result);
+          carousels[id].index = carousels[id].images.length - 1;
+          renderCarousel(id);
+        };
+        reader.readAsDataURL(file);
+      });
+      input.value = '';
+    }
+
+    // ── About photo ──
+    document.getElementById('photoInput').addEventListener('change', function (e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = ev => {
+        document.getElementById('photoPlaceholder').style.display = 'none';
+        const img = document.getElementById('aboutImg');
+        img.src = ev.target.result;
+        img.style.display = 'block';
+      };
+      reader.readAsDataURL(file);
     });
+
+    // ── Lightbox ──
+    function openLightbox(src) {
+      document.getElementById('lightboxImg').src = src;
+      document.getElementById('lightbox').classList.add('open');
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+    }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+    // ── Scroll reveal ──
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   </script>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-  integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-  </script>
-<script src="https://kit.fontawesome.com/ccc4d89966.js" crossorigin="anonymous"></script>
 
 </html>
